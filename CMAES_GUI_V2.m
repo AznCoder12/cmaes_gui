@@ -252,9 +252,9 @@ while (counteval <= stopeval-1)
     %     end
 
         %pause
-        sprintf('You have completed %d generations.\nStop and rest for 1-minute\nHit ENTER when ready.',gen_num);
-        pause(3);
-
+%         sprintf('You have completed %d generations.\nStop and rest for 1-minute\nHit ENTER when ready.',gen_num);
+         pause(3);
+% 
 %         Intext = input('\nType stop to stop experiment:\n','s');
 %         if strcmpi(strtrim(Intext),'stop')
 %             error('Trial Stopped'); 
