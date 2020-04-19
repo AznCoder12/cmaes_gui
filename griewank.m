@@ -35,11 +35,32 @@ function [y] = griewank(xx)
 d = length(xx);
 sum_val = 0;
 prod_val = 1;
-
+global pauseFlag continueFlag stopFlag
 for ii = 1:d
-	xi = xx(ii);
-	sum_val = sum_val + xi^2/4000;
-	prod_val = prod_val * cos(xi/sqrt(ii));
+%     pause(0.25);
+    if ~pauseFlag
+        %Griewank function
+        xi = xx(ii);
+        sum_val = sum_val + xi^2/4000;
+        prod_val = prod_val * cos(xi/sqrt(ii));
+    else
+        %Paused State
+        pauseFlag = false;
+        paused = true;
+        while paused
+           pause(0.1); %small time delay to not crash matlab
+           if continueFlag
+               paused = false;
+               continueFlag = false;
+               stopFlag = false;
+           elseif stopFlag
+               paused = false;
+               continueFlag = false;
+               stopFlag = false;
+               error('Experiment Stopped');
+           end
+        end
+     end
 end
 
 y = sum_val - prod_val + 1;
